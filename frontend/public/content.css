@@ -1,20 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* ================================
+   Tooltip & Spinner Styles
+================================ */
 .credibility-tooltip-container {
   position: fixed;
   z-index: 2147483647;
-  transform: translateX(-50%); /* Removed translateY(-50%) */
+  transform: translateX(-50%);
   display: none;
   font-family: 'Inter', sans-serif;
   pointer-events: all;
 }
 
-/* Loading Spinner */
 .tooltip-loading {
   width: 20px;
   height: 20px;
   border: 2px solid rgba(185, 28, 28, 0.3);
-  border-top: 2px solid rgb(185, 28, 28);
+  /* Using original color for border-top */
+  border-top: 2px solid rgb(0, 28, 28);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: auto;
@@ -26,17 +29,16 @@
 
 .info-button {
   background-color: rgb(255, 255, 255);
-  color: white;
   border: none;
   border-radius: 50%;
-  width: 40px;            /* Set a fixed width */
-  height: 40px;           /* Set a fixed height */
-  display: flex;          /* Center the SVG */
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1),
+              0 2px 4px -1px rgba(0,0,0,0.06);
   transition: background-color 0.2s;
 }
 
@@ -50,12 +52,13 @@
   transform: translateX(-50%);
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1),
+              0 2px 4px -1px rgba(0,0,0,0.06);
   border: 1px solid #e5e7eb;
   width: 280px;
   margin-top: 8px;
   pointer-events: all;
-  opacity: 0; /* Start hidden for the fade in */
+  opacity: 0;
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
@@ -146,9 +149,9 @@
   line-height: 1;
   color: rgb(255, 255, 255);
   margin: 0;
-  opacity: 0; /* Start hidden for the pop animation */
+  opacity: 0;
   animation: popIn 0.5s ease-out forwards;
-  animation-delay: 0.3s; /* Slight delay for a staggered effect */
+  animation-delay: 0.3s;
 }
 
 @keyframes popIn {
@@ -160,4 +163,126 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* ================================
+   Major Issues Modal & Button Styles
+================================ */
+.major-issues-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  background-color: rgb(185, 28, 28);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.major-issues-button:hover {
+  background-color: rgb(153, 27, 27);
+}
+
+.major-issues-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 2147483647;
+  max-width: 90%;
+  width: auto;
+  padding-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.major-issues-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(185, 28, 28);
+  color: white;
+  padding: 8px 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 16px;
+}
+
+.close-modal {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.major-issues-content {
+  padding: 10px 12px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.issue-item {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.issue-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.issue-sentence {
+  font-weight: 600;
+  margin: 0;
+}
+
+.issue-score {
+  font-size: 0.9rem;
+  margin-left: 4px;
+  color: rgb(185, 28, 28);
+}
+
+.issue-reasoning {
+  font-size: 0.8rem;
+  margin: 4px 0 0 0;
+  color: #4b5563;
+}
+
+/* ================================
+   Problematic Sentence Tooltip (on hover)
+================================ */
+.problematic-sentence {
+  background-color: rgba(255, 0, 0, 0.1);
+  position: relative;
+  cursor: help;
+}
+
+.problematic-sentence:hover::after {
+  content: "Score: " attr(data-score) " | " attr(data-reasoning);
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  color: #000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  width: 250px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
