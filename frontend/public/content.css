@@ -3,26 +3,45 @@
 .credibility-tooltip-container {
   position: fixed;
   z-index: 2147483647;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%); /* Removed translateY(-50%) */
   display: none;
   font-family: 'Inter', sans-serif;
   pointer-events: all;
 }
 
+/* Loading Spinner */
+.tooltip-loading {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(185, 28, 28, 0.3);
+  border-top: 2px solid rgb(185, 28, 28);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .info-button {
-  background-color: rgb(185, 28, 28);
+  background-color: rgb(255, 255, 255);
   color: white;
   border: none;
-  border-radius: 9999px;
-  padding: 8px;
+  border-radius: 50%;
+  width: 40px;            /* Set a fixed width */
+  height: 40px;           /* Set a fixed height */
+  display: flex;          /* Center the SVG */
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: background-color 0.2s;
-  display: block;
 }
 
 .info-button:hover {
-  background-color: rgb(153, 27, 27);
+  background-color: rgb(247, 247, 247);
 }
 
 .tooltip-content {
@@ -36,6 +55,19 @@
   width: 280px;
   margin-top: 8px;
   pointer-events: all;
+  opacity: 0; /* Start hidden for the fade in */
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .tooltip-header {
@@ -103,7 +135,7 @@
   text-transform: uppercase;
   font-size: 0.625rem;
   font-weight: 600;
-  color: rgb(185, 28, 28);
+  color: rgb(255, 255, 255);
   margin: 0 0 0.125rem;
   letter-spacing: 0.025em;
 }
@@ -112,6 +144,20 @@
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
-  color: rgb(185, 28, 28);
+  color: rgb(255, 255, 255);
   margin: 0;
+  opacity: 0; /* Start hidden for the pop animation */
+  animation: popIn 0.5s ease-out forwards;
+  animation-delay: 0.3s; /* Slight delay for a staggered effect */
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
