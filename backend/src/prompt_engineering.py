@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+# Set API Key
+openai.api_key = "sk-svcacct-3WUszL9FEVP5CyqL6HTcrO-y6LpCh2wXKRnAlPtPkAuaWmr_z3M00HEIyCh6P4KFFT3BlbkFJEI2Ae4IPXjYlXtX1CThQprFuQ2Xy4k-tUPE_r3u3l6NeZmTh9mO_RJRZDbNby46AA"  # Replace with your actual API key
 
 # Initialize OpenAI client
 client = openai.OpenAI(api_key=openai.api_key)
